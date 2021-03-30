@@ -1,6 +1,4 @@
 # whereToBin
-[![Deploy frontend status](https://gitlab.com/one-night-miracle/fontend/badges/master/pipeline.svg)](https://gitlab.com/one-night-miracle/fontend/-/commits/master)
-
   ***whereToBin*** is a web application base that help you to classify the grabage by using AI. We want you to handle the grabage easier, so we come up with this solution to help you. This project is part of ***one night miracle team***
 
 ### Video demo
