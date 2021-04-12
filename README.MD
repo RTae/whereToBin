@@ -11,7 +11,7 @@ https://wichianmas-xhsqbxxiha-as.a.run.app/detect?data=false
 
 ### :hammer: How to run
 
-### :hand: Manual
+:hand: Manual
 
 ***Backend***
 1) `pip install pipenv`
@@ -25,7 +25,7 @@ https://wichianmas-xhsqbxxiha-as.a.run.app/detect?data=false
 2) `yarn install`
 3) `yarn start`
 
-### :whale: Docker
+:whale: Docker
 
 ***Backend***
 1) `cd backend`
