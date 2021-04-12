@@ -27,7 +27,7 @@ https://wichianmas-xhsqbxxiha-as.a.run.app/detect?data=false
 1) `cd backend`
 2) `docker build -t wheretobin_backend .`
 3) `docker run -d --name wheretobin_container -p 80:80 wheretobin_backend`
-##### Frontend
+#### Frontend
 1) `cd fontend`
 2) `docker build -t wheretobin_fontend .`
 3) `docker container run -d --name whereToBin_container -p 80:8080  wheretobin_fontend`
