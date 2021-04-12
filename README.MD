@@ -12,21 +12,26 @@ https://wichianmas-xhsqbxxiha-as.a.run.app/detect?data=false
 ### :hammer: How to run
 
 ### :hand: Manual
+
 ***Backend***
 1) `pip install pipenv`
 2) `cd backend`
 3) `pipenv shell`
 4) `pip install -r requirements.txt`
 5) `uvicorn main:app --reload`
+
 ***Frontend***
 1) `cd fontend`
 2) `yarn install`
 3) `yarn start`
+
 ### :whale: Docker
+
 ***Backend***
 1) `cd backend`
 2) `docker build -t wheretobin_backend .`
 3) `docker run -d --name wheretobin_container -p 80:80 wheretobin_backend`
+
 ***Frontend***
 1) `cd fontend`
 2) `docker build -t wheretobin_fontend .`
