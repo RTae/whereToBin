@@ -37,7 +37,7 @@ https://wichianmas-xhsqbxxiha-as.a.run.app/detect?data=false
 2) `docker build -t wheretobin_fontend .`
 3) `docker container run -d --name whereToBin_container -p 80:8080  wheretobin_fontend`
 
-### :hammer: Technology
+### :electric_plug: Technology
 - React.js
 - Tensorflow
 - FastAPI
