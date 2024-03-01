@@ -8,12 +8,13 @@ const MySwal = withReactContent(Swal);
 
 function UploadAxios() {
   const axios = require("axios").default;
-  const [result, setResult] = useState({});
-  const [Done, setDone] = useState(true);
+  const [done, setDone] = useState(true);
+
+  const URL = process.env.REACT_APP_API_URL;
 
   const options = {
     method: "POST",
-    url: "https://wichianmas-xhsqbxxiha-as.a.run.app/detect?data=false",
+    url: `${URL}/detect?data=false`,
     headers: {
       "content-type": "multipart/form-data",
     },
@@ -25,11 +26,7 @@ function UploadAxios() {
     e.preventDefault();
     if (e.target.files[0]) {
       setDone(false);
-      // setShowModal(false);
       const imageFile = e.target.files[0];
-
-      // console.log("originalFile instanceof Blob", imageFile instanceof Blob); // true
-      // console.log(`originalFile size ${imageFile.size / 1024 / 1024} MB`);
       const options = {
         maxSizeMB: 1,
         maxWidthOrHeight: 1920,
@@ -37,13 +34,6 @@ function UploadAxios() {
       };
       try {
         const compressedFile = await imageCompression(imageFile, options);
-        // console.log(
-        //   "compressedFile instanceof Blob",
-        //   compressedFile instanceof Blob
-        // ); // true
-        // console.log(
-        //   `compressedFile size ${compressedFile.size / 1024 / 1024} MB`
-        // ); // smaller than maxSizeMB
         e.target.value = "";
         await Upload(compressedFile); // write your own logic
       } catch (error) {
@@ -63,7 +53,6 @@ function UploadAxios() {
         },
       });
       const result = window.URL.createObjectURL(res.data);
-      setResult(result);
       setDone(true);
       MySwal.fire({
         title: "Your Result!",
@@ -75,10 +64,9 @@ function UploadAxios() {
     } catch (err) {
       console.error(err);
     }
-    return;
   }
 
-  return <Home Upload={Upload} onChange={onChange} Done={Done} />;
+  return <Home Upload={Upload} onChange={onChange} Done={done} />;
 }
 
 export default UploadAxios;
