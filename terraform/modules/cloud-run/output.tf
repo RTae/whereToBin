@@ -1,4 +1,4 @@
-output "email_sa" {
+output "sa_email" {
   value       = google_service_account.sa.email
   description = "Service account email of the Cloud Run service"
 }
