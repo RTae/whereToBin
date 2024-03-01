@@ -10,8 +10,27 @@ module "registry" {
   description = "demo-registry"
 
   members = [
+    "serviceAccount:${module.cicd_sa.sa_email}",
     "serviceAccount:${module.backend.sa_email}",
     "serviceAccount:${module.frontend.sa_email}"
+  ]
+}
+
+# ------------------------------------------------------------------------------
+# SA
+# ------------------------------------------------------------------------------
+module "cicd_sa" {
+  source = "./modules/sa"
+
+  project_id = var.project_id
+  location   = var.location
+  name       = "cicd"
+  display_name = "CI/CD Service Account"
+  description  = "CI/CD Service Account"
+
+  iam_roles = [
+    "roles/storage.objectUser",
+    "roles/run.developer",
   ]
 }
 

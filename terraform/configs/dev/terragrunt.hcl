@@ -3,7 +3,7 @@ terraform {
 }
 
 locals {
-  project_id = "	personal-388003"
+  project_id = "personal-388003"
   location = "asia-southeast1"
 }
 
