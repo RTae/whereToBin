@@ -58,7 +58,7 @@ jobs:
 
   deploy:
     environment: dev
-    name: Build Docker image and push to repositories
+    name: Deploy with Terraform
     runs-on: ubuntu-latest
     container:
       image: alpine/terragrunt
@@ -71,5 +71,3 @@ jobs:
         run: |-
           cat ${SERVICE_ACCOUNT_KEY} > gcloud-sa-key.json
           cat gcloud-sa-key.json
-          export GOOGLE_CREDENTIALS="./gcloud-sa-key.json"
-          export IMAGE_TAG=${{ env.SHORT_SHA }}
