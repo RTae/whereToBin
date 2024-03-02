@@ -14,8 +14,33 @@ jobs:
   # ==============
   # CI task
   # ==============
+  unit-test:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+      checks: write
+      statuses: write
+    steps:
+      - name: "Checkout"
+        uses: "actions/checkout@v3"
+        
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Install modules
+        working-directory: frontend
+        run: yarn install
+
+      - name: Run unit test
+        working-directory: frontend
+        run: yarn test
+
   build-and-push-image:
     environment: dev
+    needs:
+      - unit-test
     name: Build Docker image and push to repositories
     runs-on: ubuntu-latest
 

@@ -2,7 +2,7 @@
 FROM node:15.8.0-alpine3.10 as react-build
 WORKDIR /app
 COPY . ./
-RUN yarn
+RUN yarn install
 RUN yarn build
 
 # server environment
