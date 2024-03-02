@@ -5,54 +5,50 @@ on:
     branches: [main]
   pull_request:
 
+env:
+  REGION: asia-southeast1
+
 jobs:
   # ==============
   # CI task
   # ==============
-  build-and-push-docker-image:
+  build-and-push-image:
     name: Build Docker image and push to repositories
     runs-on: ubuntu-latest
-    needs: system-integration-test
+
+    strategy:
+      matrix:
+        module:
+          [
+            backend,
+            frontend
+          ]
 
     steps:
-      - uses: actions/checkout@v3
+      - name: "Checkout"
+        uses: "actions/checkout@v3"
 
       - name: Setup SHA
         run: echo "GITHUB_SHA=${GITHUB_SHA}" >> $GITHUB_ENV
 
-      - name: Make envfile
-        uses: SpicyPizza/create-envfile@v1.3
+      - id: "auth"
+        uses: "google-github-actions/auth@v1"
         with:
-          envkey_DOMAIN: "kkgo_test.com"
-          envkey_IMAGE_NAME: "ghcr.io/rtae/assessment"
-          envkey_VERSION: ${{ env.GITHUB_SHA }}
-          envkey_PORT: "2565"
-          envkey_DB_DATABASE: "expense_db"
-          envkey_DB_USER: "admin_test"
-          envkey_DB_PASSWORD: "418fec5f0f023b7a3f5766e8202f8e1c"
-          envkey_DB_PORT: "5432"
-          envkey_DB_URL: "postgresql://admin_test:418fec5f0f023b7a3f5766e8202f8e1c@database.kkgo_test.com:5432/expense_db?sslmode=disable"
+          credentials_json: "${{ secrets.SERVICE_ACCOUNT_KEY }}"
+
+      - name: "Set up Cloud SDK"
+        uses: "google-github-actions/setup-gcloud@v1"
+
+      - name: "Use gcloud CLI"
+        run: "gcloud info"
+
+      - name: "Docker auth"
+        run: |-
+          gcloud auth configure-docker ${{ env.REGION }}-docker.pkg.dev --quiet
 
       - name: Build image
-        run: docker compose -f docker-compose.yaml -p kkgo-ets-prod build
+        run: docker build -f Dockerfile -t ${{ env.GAR_LOCATION }}/${{ matrix.module }}:${{ env.GITHUB_SHA }} .
+        working-directory: ${{ matrix.module }}
 
-      - name: Login ghcr.io
-        uses: docker/login-action@v1.8.0
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-          logout: true
-
-      - name: Push to GitHub Container Registry
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          tags: |
-            ghcr.io/rtae/assessment:${{ env.GITHUB_SHA }}
-          # build on feature branches, push only on main branch
-          push: ${{ github.ref == 'refs/heads/main' }}
-          file: infra/prod/expense-tracking/build-image/Dockerfile
-
-      - name: Image digest
-        run: echo ghcr.io/rtae/assessment:${{ env.GITHUB_SHA }}
+      - name: Push image
+        run: docker push ${{ env.GAR_LOCATION }}
