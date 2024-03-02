@@ -1,5 +1,6 @@
 name: wheretobin-cicd
 
+
 on:
   push:
     branches: [main]
@@ -13,6 +14,7 @@ jobs:
   # CI task
   # ==============
   build-and-push-image:
+    environment: dev
     name: Build Docker image and push to repositories
     runs-on: ubuntu-latest
 
