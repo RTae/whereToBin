@@ -72,10 +72,9 @@ jobs:
 
       - name: "Run Terragrunt"
         working-directory: "terraform"
+        env:
+          GOOGLE_CREDENTIALS: ${{ secrets.SERVICE_ACCOUNT_KEY }}
+          IMAGE_TAG: 1234
         run: |-
-          echo "${{ secrets.SERVICE_ACCOUNT_KEY }}" > ./gcloud-sa-key.json
-          export GOOGLE_CREDENTIALS="./gcloud-sa-key.json"
-          export IMAGE_TAG=1234
-
           make plan ENV=dev
           make apply ENV=dev
