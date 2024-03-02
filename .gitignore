@@ -72,3 +72,5 @@ vendor
 .terraform.lock.hcl
 terragrunt
 .DS_Store
+
+frontend/.env
