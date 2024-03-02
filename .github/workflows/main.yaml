@@ -79,5 +79,7 @@ jobs:
           export GOOGLE_CREDENTIALS="~/gcloud-sa-key.json"
           export IMAGE_TAG=${{ env.SHORT_SHA }}
 
-          make plan ENV=dev
-          make apply ENV=dev
+          cat $GOOGLE_CREDENTIALS
+
+          # make plan ENV=dev
+          # make apply ENV=dev
