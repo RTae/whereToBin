@@ -69,14 +69,12 @@ jobs:
       - name: Update dependencies
         run: apk update && apk add --no-cache make
 
-      - name: Create file from secret
-        run: echo "${{ secrets.SERVICE_ACCOUNT_KEY }}" > ./terraform/gcloud-sa-key.json
-        shell: bash
 
       - name: "Run Terragrunt"
         working-directory: "terraform"
         run: |-
-          export GOOGLE_CREDENTIALS="./terraform/gcloud-sa-key.json"
+          echo "${{ secrets.SERVICE_ACCOUNT_KEY }}" > ./gcloud-sa-key.json
+          export GOOGLE_CREDENTIALS="./gcloud-sa-key.json"
           export IMAGE_TAG=${{ env.SHORT_SHA }}
 
           cat $GOOGLE_CREDENTIALS
