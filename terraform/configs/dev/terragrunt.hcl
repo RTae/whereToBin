@@ -12,6 +12,6 @@ inputs = {
   project_id = local.project_id
   location = local.location
   
-  backend_image_name = "asia-southeast1-docker.pkg.dev/personal-388003/demo-registry-gar/backend:${image_tag}"
-  frontend_image_name = "asia-southeast1-docker.pkg.dev/personal-388003/demo-registry-gar/frontend:${image_tag}"
+  backend_image_name = "asia-southeast1-docker.pkg.dev/personal-388003/demo-registry-gar/backend:${local.image_tag}"
+  frontend_image_name = "asia-southeast1-docker.pkg.dev/personal-388003/demo-registry-gar/frontend:${local.image_tag}"
 }
