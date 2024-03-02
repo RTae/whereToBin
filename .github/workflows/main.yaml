@@ -14,47 +14,47 @@ jobs:
   # ==============
   # CI task
   # ==============
-  # build-and-push-image:
-  #   environment: dev
-  #   name: Build Docker image and push to repositories
-  #   runs-on: ubuntu-latest
+  build-and-push-image:
+    environment: dev
+    name: Build Docker image and push to repositories
+    runs-on: ubuntu-latest
 
-  #   strategy:
-  #     matrix:
-  #       module:
-  #         [
-  #           backend,
-  #           frontend
-  #         ]
+    strategy:
+      matrix:
+        module:
+          [
+            backend,
+            frontend
+          ]
 
-  #   steps:
-  #     - name: "Checkout"
-  #       uses: "actions/checkout@v3"
+    steps:
+      - name: "Checkout"
+        uses: "actions/checkout@v3"
 
-  #     - name: Add image tags
-  #       run: echo "SHORT_SHA=`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_ENV
+      - name: Add image tags
+        run: echo "SHORT_SHA=`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_ENV
 
-  #     - id: "auth"
-  #       uses: "google-github-actions/auth@v2"
-  #       with:
-  #         credentials_json: "${{ secrets.SERVICE_ACCOUNT_KEY }}"
+      - id: "auth"
+        uses: "google-github-actions/auth@v2"
+        with:
+          credentials_json: "${{ secrets.SERVICE_ACCOUNT_KEY }}"
 
-  #     - name: "Set up Cloud SDK"
-  #       uses: "google-github-actions/setup-gcloud@v2"
+      - name: "Set up Cloud SDK"
+        uses: "google-github-actions/setup-gcloud@v2"
 
-  #     - name: "Use gcloud CLI"
-  #       run: "gcloud info"
+      - name: "Use gcloud CLI"
+        run: "gcloud info"
 
-  #     - name: "Docker auth"
-  #       run: |-
-  #         gcloud auth configure-docker ${{ env.REGION }}-docker.pkg.dev --quiet
+      - name: "Docker auth"
+        run: |-
+          gcloud auth configure-docker ${{ env.REGION }}-docker.pkg.dev --quiet
 
-  #     - name: Build image
-  #       run: docker build -f Dockerfile -t ${{ env.GAR_LOCATION }}/${{ matrix.module }}:${{ env.SHORT_SHA }} .
-  #       working-directory: ${{ matrix.module }}
+      - name: Build image
+        run: docker build -f Dockerfile -t ${{ env.GAR_LOCATION }}/${{ matrix.module }}:${{ env.SHORT_SHA }} .
+        working-directory: ${{ matrix.module }}
 
-  #     - name: Push image
-  #       run: docker push ${{ env.GAR_LOCATION }}/${{ matrix.module }}:${{ env.SHORT_SHA }}
+      - name: Push image
+        run: docker push ${{ env.GAR_LOCATION }}/${{ matrix.module }}:${{ env.SHORT_SHA }}
 
   deploy:
     environment: dev
