@@ -56,8 +56,8 @@ jobs:
       - name: Install dependencies
         working-directory: backend
         run: |-
-          apt-get update
-          apt-get install libxml2-dev libxslt-dev
+          sudo apt-get update
+          sudo apt-get install libxml2-dev libxslt-dev
           pip install -r requirements.txt
 
       - name: Run unit test
