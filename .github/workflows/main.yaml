@@ -8,6 +8,7 @@ on:
 
 env:
   REGION: asia-southeast1
+  GAR_LOCATION: asia-southeast1-docker.pkg.dev/personal-388003/demo-registry-gar
 
 jobs:
   # ==============
