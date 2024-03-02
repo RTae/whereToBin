@@ -54,9 +54,11 @@ jobs:
           python-version: "3.11"
 
       - name: Install dependencies
+        working-directory: backend
         run: pip install -r requirements.txt
 
       - name: Run unit test
+        working-directory: backend
         run: pytest
 
   build-and-push-image:

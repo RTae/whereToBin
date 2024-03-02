@@ -1,5 +1,5 @@
 # build environment
-FROM nikolaik/python-nodejs:python3.10-nodejs18-alpine as react-build
+FROM nikolaik/python-nodejs:python3.10-nodejs18-bullseye as react-build
 WORKDIR /app
 COPY . ./
 RUN yarn install
