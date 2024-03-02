@@ -1,10 +1,10 @@
 from fastapi.middleware.cors import CORSMiddleware
 from starlette.responses import StreamingResponse
 from fastapi import FastAPI, File, UploadFile
-from model.model import model
+from model.model import Model
 import io
 
-m = model()
+m = Model()
 
 app = FastAPI()
 

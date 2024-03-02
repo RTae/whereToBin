@@ -72,3 +72,6 @@ vendor
 .terraform.lock.hcl
 terragrunt
 .DS_Store
+
+__pycache__
+.pytest_cache
