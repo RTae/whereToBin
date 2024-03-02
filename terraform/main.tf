@@ -30,7 +30,11 @@ module "cicd_sa" {
 
   iam_roles = [
     "roles/storage.objectUser",
+    "roles/artifactregistry.admin",
     "roles/run.developer",
+    "roles/iam.serviceAccountCreator",
+    "roles/resourcemanager.projectIamAdmin",
+    "roles/iam.serviceAccountUser"
   ]
 }
 
