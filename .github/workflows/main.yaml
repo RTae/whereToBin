@@ -76,7 +76,7 @@ jobs:
         working-directory: "terraform"
         env:
           GOOGLE_CREDENTIALS: ${{ secrets.SERVICE_ACCOUNT_KEY }}
-          IMAGE_TAG: 1234
+          IMAGE_TAG: ${{ env.SHORT_SHA }}
         run: |-
           make plan ENV=dev
           make apply ENV=dev
