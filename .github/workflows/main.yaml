@@ -66,6 +66,9 @@ jobs:
       - name: "Checkout"
         uses: "actions/checkout@v3"
 
+      - name: Update dependencies
+        run: apk update && apk add --no-cache make
+
       - name: "Run Terragrunt"
         working-directory: "terraform"
         run: |-
