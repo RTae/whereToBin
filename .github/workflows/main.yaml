@@ -14,7 +14,7 @@ jobs:
   # ==============
   # CI task
   # ==============
-  unit-test:
+  unit-test-frontend:
     runs-on: ubuntu-latest
     permissions:
       id-token: write
@@ -24,7 +24,7 @@ jobs:
     steps:
       - name: "Checkout"
         uses: "actions/checkout@v3"
-        
+
       - uses: actions/setup-node@v3
         with:
           node-version: 16
@@ -37,10 +37,33 @@ jobs:
         working-directory: frontend
         run: yarn test
 
+  unit-test-backend:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+      checks: write
+      statuses: write
+    steps:
+      - name: "Checkout"
+        uses: "actions/checkout@v3"
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run unit test
+        run: pytest
+
   build-and-push-image:
     environment: dev
     needs:
-      - unit-test
+      - unit-test-frontend
+      - unit-test-backend
     name: Build Docker image and push to repositories
     runs-on: ubuntu-latest
 
