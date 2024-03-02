@@ -74,7 +74,7 @@ jobs:
         working-directory: "terraform"
         run: |-
           echo "${{ secrets.SERVICE_ACCOUNT_KEY }}" > ./gcloud-sa-key.json
-          export GCLOUD_KEYFILE_JSON="./gcloud-sa-key.json"
+          export GOOGLE_CLOUD_KEYFILE_JSON="./gcloud-sa-key.json"
           export IMAGE_TAG=1234
 
           make plan ENV=dev
