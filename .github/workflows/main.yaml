@@ -78,5 +78,6 @@ jobs:
           GOOGLE_CREDENTIALS: ${{ secrets.SERVICE_ACCOUNT_KEY }}
           IMAGE_TAG: ${{ env.SHORT_SHA }}
         run: |-
+          export IMAGE_TAG=${IMAGE_TAG}
           make plan ENV=dev
           make apply ENV=dev
