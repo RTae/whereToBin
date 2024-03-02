@@ -71,7 +71,7 @@ jobs:
 
       - name: Create file from secret
         working-directory: "terraform"
-        run: echo "${{ secrets.FILE_CONTENT }}" > my-secret-file.txt
+        run: echo "${{ secrets.SERVICE_ACCOUNT_KEY }}" > ./gcloud-sa-key.json
         shell: bash
 
       - name: "Run Terragrunt"
