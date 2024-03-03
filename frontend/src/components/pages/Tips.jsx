@@ -30,23 +30,6 @@ function General() {
             text="text-blueBin"
           />
 
-          {/* Yellow Bin */}
-          <BinCard
-            imgUrl="https://res.cloudinary.com/khaokruacooking/image/upload/v1614254109/Bin/yellow-bin_ijit1u.png"
-            title="ถังสีเหลือง"
-            subtitle="ขยะรีไซเคิล"
-            detail="นำไปรีไซเคิลกลับมาใช้ใหม่ได้"
-            text="text-yellowBin"
-          />
-
-          {/* Red Bin */}
-          <BinCard
-            imgUrl="https://res.cloudinary.com/khaokruacooking/image/upload/v1614254109/Bin/red-bin_wzsoio.png"
-            title="ถังสีแดง"
-            subtitle="ขยะอันตราย"
-            detail="นำไปทำลายทิ้งอย่างถูกวิธี"
-            text="text-redBin"
-          />
         </div>
       </div>
     </section>
