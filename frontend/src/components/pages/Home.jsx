@@ -18,8 +18,7 @@ const Home = ({ Upload, onChange, Done }) => {
                 className="mx-auto text-base text-gray-500 sm:max-w-md lg:text-xl md:max-w-3xl text-left"
                 id=""
               >
-                human society sustains itself by transforming nature into
-                garbage.
+                Hello Greener.
               </p>
               <form onSubmit={Upload}>
                 <div className="relative flex flex-col sm:flex-row sm:space-x-4">
