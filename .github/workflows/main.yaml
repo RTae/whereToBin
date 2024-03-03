@@ -93,9 +93,11 @@ jobs:
       - name: "Checkout"
         uses: "actions/checkout@v3"
 
+      - name: Add image tags
+        run: echo "SHORT_SHA=`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_ENV
+
       - name: Update dependencies
         run: apk update && apk add --no-cache make
-
 
       - name: "Run Terragrunt"
         working-directory: "terraform"
