@@ -4,7 +4,6 @@ name: wheretobin-cicd
 on:
   push:
     branches: [main]
-  pull_request:
 
 env:
   REGION: asia-southeast1
