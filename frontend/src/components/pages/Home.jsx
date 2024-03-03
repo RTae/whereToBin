@@ -11,14 +11,15 @@ const Home = ({ Upload, onChange, Done }) => {
               <h1 className="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl md:text-3xl lg:text-4xl xl:text-5xl text-left">
                 <span className="block">Zero Waste Together,</span>
                 <span className="block text-green-500 xl:inline" id="">
-                  Just Waste Separate.
+                  Hello Greener.
                 </span>
               </h1>
               <p
                 className="mx-auto text-base text-gray-500 sm:max-w-md lg:text-xl md:max-w-3xl text-left"
                 id=""
               >
-                Hello Greener.
+                human society sustains itself by transforming nature into
+                garbage.
               </p>
               <form onSubmit={Upload}>
                 <div className="relative flex flex-col sm:flex-row sm:space-x-4">
