@@ -1,8 +1,13 @@
 # build environment
-FROM node:15.8.0-alpine3.10 as react-build
+FROM node:16 AS react-build
+
+RUN apt-get update && \
+    apt-get install libpango1.0-dev -y && \
+    apt-get clean
+
 WORKDIR /app
 COPY . ./
-RUN yarn
+RUN yarn install
 RUN yarn build
 
 # server environment
