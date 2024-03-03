@@ -1,8 +1,8 @@
 # build environment
-FROM nikolaik/python-nodejs:python3.9-nodejs20 as react-build
+FROM node:15.8.0-alpine3.10 as react-build
 WORKDIR /app
 COPY . ./
-RUN yarn install
+RUN yarn
 RUN yarn build
 
 # server environment
