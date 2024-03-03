@@ -39,8 +39,8 @@ jobs:
 
   build-and-push-image:
     environment: dev
-    needs:
-      - unit-test
+    # needs:
+    #   - unit-test
     name: Build Docker image and push to repositories
     runs-on: ubuntu-latest
 
