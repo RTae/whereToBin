@@ -6,10 +6,10 @@ function General() {
     <section id="tips" className="mt-10 py-20 bg-white">
       <div className="container max-w-6xl mx-auto">
         <h2 className="text-4xl font-bold tracking-tight text-center font-kanit">
-          ถังขยะแต่ละประเภท
+          Type of garbage waste
         </h2>
         <p className="mt-2 text-lg font-kanit text-center text-gray-600">
-          ความหมายของเเต่ละสี.
+          Meaning of each type.
         </p>
         <div className="grid grid-cols-4 gap-8 mt-10 sm:grid-cols-8 lg:grid-cols-8 sm:px-8 px-8 xl:px-0">
           {/* Green Bin */}
